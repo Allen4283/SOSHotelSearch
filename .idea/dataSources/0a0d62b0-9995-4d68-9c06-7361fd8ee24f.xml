@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Derby (Embedded) - SOSHotelAccountDB">
-  <database-model serializer="dbm" rdbms="DERBY" format-version="4.11">
+  <database-model serializer="dbm" dbms="DERBY" family-id="DERBY" format-version="4.14">
     <root id="1">
       <ServerVersion>10.14</ServerVersion>
     </root>
