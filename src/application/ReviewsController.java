@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -7,14 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.sql.*;
 
 /**
- * Desc: creates review list and allows user to submit reviews
+ * Desc: creates review list and allows user to submit reviews.
  */
 public class ReviewsController {
   @FXML
-  private TextField Review;
+  private TextField reviewTextField;
   @FXML
   private ChoiceBox<String> userRating;
   @FXML
@@ -31,13 +31,13 @@ public class ReviewsController {
   String review;
   String rating;
 
-  String URL = Credentials.getUrl();
-  String hotelID = HotelController.getHotel().getHotelId();
+  String reviewUrl = Credentials.getUrl();
+  String hotelId = HotelController.getHotel().getHotelId();
 
   static ObservableList<Review> reviewsList;
 
   /**
-   * Desc: loads the list of reviews
+   * Desc: loads the list of reviews.
    *
    * @throws: Exception
    */
@@ -48,16 +48,16 @@ public class ReviewsController {
   }
 
   /**
-   * Desc: submits the review
+   * Desc: submits the review.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
    */
   public void submitButton(ActionEvent event) throws Exception {
-    review = Review.getText();
+    review = reviewTextField.getText();
     rating = userRating.getSelectionModel().getSelectedItem();
 
-    String create_Review_SQL = "INSERT INTO REVIEW." + "\"" + hotelID + "\""
+    String createReviewSql = "INSERT INTO REVIEW." + "\"" + hotelId + "\""
             + " ( USERNAME, REVIEW, USER_RATING) "
             + "VALUES ("
             + "'" + Credentials.getClientUsername() + "', "
@@ -65,7 +65,7 @@ public class ReviewsController {
             + "'" + rating + "'"
             + " )";
 
-    String create_Table_SQL = "CREATE TABLE REVIEW." + "\"" + hotelID + "\""
+    String createTableSql = "CREATE TABLE REVIEW." + "\"" + hotelId + "\""
             + "("
             + "USERNAME varchar(255),"
             + "REVIEW varchar(255),"
@@ -75,22 +75,22 @@ public class ReviewsController {
     if (review.length() < 10 || rating == null) {
       status.setText("Please enter more text and choose a rating.");
     } else if (review.length() > 255) {
-      status.setText("Review is too long. 255 characters maximum.");
+      status.setText("reviewTextField is too long. 255 characters maximum.");
     } else {
       try {
         Class.forName(Credentials.getDriver());
-        Connection reviewConnection = DriverManager.getConnection(URL);
+        Connection reviewConnection = DriverManager.getConnection(reviewUrl);
         Statement stmt = reviewConnection.createStatement();
-        stmt.executeUpdate(create_Table_SQL);
+        stmt.executeUpdate(createTableSql);
         reviewConnection.close();
         submitButton(new ActionEvent());
 
 
       } catch (SQLException ex) {
         Class.forName(Credentials.getDriver());
-        Connection reviewConnection = DriverManager.getConnection(URL);
+        Connection reviewConnection = DriverManager.getConnection(reviewUrl);
         Statement stmt = reviewConnection.createStatement();
-        stmt.executeUpdate(create_Review_SQL);
+        stmt.executeUpdate(createReviewSql);
         reviewConnection.close();
       }
 
@@ -99,18 +99,18 @@ public class ReviewsController {
   }
 
   /**
-   * Desc: updates the review list
+   * Desc: updates the review list.
    *
    * @throws: Exception
    */
   public void updateList() throws Exception {
     reviewsList = FXCollections.observableArrayList();
     try {
-      String get_review_SQL = "SELECT * FROM REVIEW." + "\"" + hotelID + "\"";
+      String getReviewSql = "SELECT * FROM REVIEW." + "\"" + hotelId + "\"";
 
-      Connection getReviewConnection = DriverManager.getConnection(URL);
+      Connection getReviewConnection = DriverManager.getConnection(reviewUrl);
       Statement statement = getReviewConnection.createStatement();
-      ResultSet resultSet = statement.executeQuery(get_review_SQL);
+      ResultSet resultSet = statement.executeQuery(getReviewSql);
 
       while (resultSet.next()) {
 
@@ -133,7 +133,7 @@ public class ReviewsController {
   }
 
   /**
-   * Desc: goes back to the hotel info scene
+   * Desc: goes back to the hotel info scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception

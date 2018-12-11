@@ -1,5 +1,9 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,15 +16,13 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 /**
- * Desc: controller class for the search scene
+ * Desc: controller class for the search scene.
  */
 
 public class SearchController {
+
   // intended to set map location from previous screen on startup. Flagged false
   private boolean isNewInstance = true;
   private int offset = 0;
@@ -44,9 +46,9 @@ public class SearchController {
   //Side panel buttons
 
   /**
-   * Desc: goes to dashboard scene
+   * Desc: goes to dashboard scene.
    *
-   * @throws Exception
+   * @throws Exception is thrown when dashboard scene does not exist.
    * @param: event - ActionEvent from the button
    */
   public void dashboard(ActionEvent event) throws Exception {
@@ -54,9 +56,9 @@ public class SearchController {
   }
 
   /**
-   * Desc: goes to myAccount scene
+   * Desc: goes to myAccount scene.
    *
-   * @throws Exception
+   * @throws Exception is thrown when myAccount scene does not exist.
    * @param: event - ActionEvent from the button
    */
   public void myAccount(ActionEvent event) throws Exception {
@@ -64,9 +66,9 @@ public class SearchController {
   }
 
   /**
-   * Desc: goes to logout scene
+   * Desc: goes to logout scene.
    *
-   * @throws Exception
+   * @throws Exception is thrown when logout scene does not exist.
    * @param: event - ActionEvent from the button
    */
   public void logout(ActionEvent event) throws Exception {
@@ -74,18 +76,18 @@ public class SearchController {
   }
 
   /**
-   * Desc: intialize the scene by creating a map manager and creating images. Checks for new
+   * Desc: initialize the scene by creating a map manager and creating images. Checks for new
    * instance and sets map location accordingly.
    */
   public void initialize() {
-    MapManager mapManager = new MapManager();
+    final MapManager mapManager = new MapManager();
 
     images.add(new Image("application/hotelthumbs/La-Quinta.jpg"));
     images.add(new Image("application/hotelthumbs/holiday-inn-the-colony-4629618286-4x3.jpeg"));
     images.add(new Image("application/hotelthumbs/hotel1.jpg"));
     images.add(new Image("application/hotelthumbs/hotel2.jpg"));
     images.add(new Image("application/hotelthumbs/Hyatt-Place-St-George-Convention-Center-P004-"
-            + "Exterior.adapt.16x9.1920.1080.jpg"));
+        + "Exterior.adapt.16x9.1920.1080.jpg"));
     images.add(new Image("application/hotelthumbs/T1114MARRIOTTTUCSON.jpg"));
 
     // get list of hotels returned from mapManager
@@ -109,8 +111,9 @@ public class SearchController {
   }
 
   /**
-   * Desc: sorts the hotel list by price. Every pass the list must be redrawn, so creates all objects
-   * comprising each entry in the list using data pulled from hotelsToDisplay in mapManager
+   * Desc: sorts the hotel list by price. Every pass the list must be redrawn, so creates all
+   * objects comprising each entry in the list using data pulled from hotelsToDisplay in
+   * mapManager.
    */
   private void sortList() {
     //clear any children on the list
@@ -132,11 +135,11 @@ public class SearchController {
       Image image = images.get(rand.nextInt(images.size()));
       ImageView hotelImage = new ImageView(image);
 
-      Label hotelName = new Label();
-      Label hotelStars = new Label();
-      Label hotelPrice = new Label();
-      Label hotelRating = new Label();
-      Button infoButton = new Button();
+      final Label hotelName = new Label();
+      final Label hotelStars = new Label();
+      final Label hotelPrice = new Label();
+      final Label hotelRating = new Label();
+      final Button infoButton = new Button();
 
       // set the height of each pane to be equal to the thumbnail in it
       hotelPane.setPrefHeight(hotelImage.getImage().getHeight());
@@ -144,7 +147,7 @@ public class SearchController {
       // set fields of preview window to those from each hotel object
       Text name = new Text(hotel.getName());
       Text stars = new Text(hotel.getStars() + "-Star Hotel");
-      Text rating = new Text("User rating: 4/5");
+      final Text rating = new Text("User rating: 4/5");
       Text price = new Text("$" + hotel.getPrice());
 
       price.setFill(Paint.valueOf("#1b9dc1"));
@@ -157,14 +160,14 @@ public class SearchController {
       // configure layout of elements on hotel list
       double baseXOffset = hotelImage.getImage().getWidth() + 10;
       double baseYOffset = (hotelImage.getImage().getHeight() + 5)
-              - hotelImage.getImage().getHeight();
-      int yPadding = 17;
-      int hotelPriceOffset = 100;
+          - hotelImage.getImage().getHeight();
+      final int yPadding = 17;
+      final int hotelPriceOffset = 100;
 
       Font hotelNameFont = new Font(14);
-      Font hotelStarsFont = new Font(12);
-      Font hotelRatingFont = new Font(16);
-      Font hotelPriceFont = new Font(30);
+      final Font hotelStarsFont = new Font(12);
+      final Font hotelRatingFont = new Font(16);
+      final Font hotelPriceFont = new Font(30);
 
       hotelName.setLayoutX(baseXOffset);
       hotelName.setLayoutY(baseYOffset);
@@ -187,7 +190,7 @@ public class SearchController {
       infoButton.setLayoutX(hotelImage.getLayoutX());
       infoButton.setLayoutY(hotelImage.getLayoutY());
       infoButton.setPrefWidth(hotelImage.getImage().getWidth() + baseXOffset
-              + hotelName.getMaxWidth() + 10);
+          + hotelName.getMaxWidth() + 10);
       infoButton.setPrefHeight(hotelImage.getImage().getHeight());
 
       infoButton.addEventHandler(ActionEvent.ACTION, event -> {
@@ -206,10 +209,10 @@ public class SearchController {
       // make every other pane have a light background
       if (hotelPaneOffset % 2 == 0) {
         hotelPane.setBackground(new Background(new BackgroundFill(Paint.valueOf("#78c9f4"),
-                null, null)));
+            null, null)));
       } else {
         hotelPane.setBackground(new Background(new BackgroundFill(Paint.valueOf("#FFFFFF"),
-                null, null)));
+            null, null)));
       }
       hotelList.getChildren().add(hotelPane);
 
@@ -226,7 +229,7 @@ public class SearchController {
   }
 
   /**
-   * Desc: sets lowToHigh to true and calls sortList
+   * Desc: sets lowToHigh to true and calls sortList.
    *
    * @param: lowToHigh - boolean controlling sorting scheme for list
    */
@@ -236,7 +239,7 @@ public class SearchController {
   }
 
   /**
-   * Desc: sets lowToHigh to false and calls sortList
+   * Desc: sets lowToHigh to false and calls sortList.
    *
    * @param: lowToHigh - boolean controlling sorting scheme for list
    */

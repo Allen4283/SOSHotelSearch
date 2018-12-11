@@ -51,7 +51,7 @@
       <RadioButton fx:id="regSearcherBtn" layoutX="444.0" layoutY="357.0" mnemonicParsing="false" selected="true" style="-fx-unselected-color: white;" text="Hotel Searcher" toggleGroup="$registerType" />
       <Label fx:id="emailStatus" layoutX="331.0" layoutY="245.0" text="Email" />
       <Label fx:id="dobStatus" layoutX="333.0" layoutY="298.0" text="Date of Birth" />
-      <TextField fx:id="txtDOB" layoutX="331.0" layoutY="315.0" prefHeight="27.0" prefWidth="169.0" promptText="MM/DD/YYYY" style="-fx-background-color: #ffffff; -fx-border-color: #dddddd;" />
+      <TextField fx:id="txtDob" layoutX="331.0" layoutY="315.0" prefHeight="27.0" prefWidth="169.0" promptText="MM/DD/YYYY" style="-fx-background-color: #ffffff; -fx-border-color: #dddddd;" />
       <TextField fx:id="txtEmail" layoutX="330.0" layoutY="262.0" prefHeight="27.0" prefWidth="169.0" promptText="E-mail" style="-fx-background-color: #ffffff; -fx-border-color: #dddddd;" />
       <AnchorPane prefHeight="432.0" prefWidth="276.0" style="-fx-background-color: #1b9dc1;">
          <ImageView fitHeight="181.0" fitWidth="245.0" layoutX="16.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">

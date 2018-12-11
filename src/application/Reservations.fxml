@@ -87,9 +87,9 @@
       </Label>
       <TableView fx:id="tableView" layoutX="144.0" layoutY="136.0" prefHeight="320.0" prefWidth="681.0" stylesheets="@style.css">
         <columns>
-          <TableColumn fx:id="HotelNameCol" prefWidth="75.0" text="Hotel name" />
-          <TableColumn fx:id="CheckInCol" prefWidth="75.0" text="Check in date" />
-            <TableColumn fx:id="CheckOutCol" prefWidth="75.0" text="Check out date" />
+          <TableColumn fx:id="hotelNameCol" prefWidth="75.0" text="Hotel name" />
+          <TableColumn fx:id="checkInCol" prefWidth="75.0" text="Check in date" />
+            <TableColumn fx:id="checkOutCol" prefWidth="75.0" text="Check out date" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

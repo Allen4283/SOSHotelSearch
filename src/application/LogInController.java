@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,10 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Paint;
 
-import java.sql.*;
 
 /**
- * Desc: controller for the login screen
+ * Desc: controller for the login screen.
  */
 
 public class LogInController extends Credentials {
@@ -31,7 +31,7 @@ public class LogInController extends Credentials {
   private RadioButton ownerBtn;
 
   @FXML
-  private ToggleGroup loginType;
+  private ToggleGroup loginAccountType;
 
   /**
    * Desc: proceeds to the next screen. Checks user credentials for validity
@@ -40,22 +40,21 @@ public class LogInController extends Credentials {
    * @param: event - the event handler for the button
    * @throws: Exception
    */
-  public void Login(ActionEvent event) throws Exception {
+  public void login(ActionEvent event) throws Exception {
 
     //gets status of whether the user has chosen hotel searcher or hotel owner
-    RadioButton selectedRadioButton = (RadioButton) loginType.getSelectedToggle();
+    RadioButton selectedAccountTypeBtn = (RadioButton) loginAccountType.getSelectedToggle();
 
     //hotel searcher login
-    if (selectedRadioButton == searcherBtn) {
+    if (selectedAccountTypeBtn == searcherBtn) {
       //check if login info is correct
       try {
         Class.forName(Credentials.getDriver());
         Connection loginConnection = DriverManager.getConnection(Credentials.getUrl());
         Statement statement = loginConnection.createStatement();
-        String searcherSQL = "SELECT USERNAME, PASSWORD FROM SOS.SEARCHER WHERE USERNAME='"
-                + txtUsername.getText() + "'" + " AND PASSWORD='" + txtPassword.getText() + "'";
-        ResultSet result = statement.executeQuery(searcherSQL);
-
+        final String searcherSql = "SELECT USERNAME, PASSWORD FROM SOS.SEARCHER WHERE USERNAME='"
+            + txtUsername.getText() + "'" + " AND PASSWORD='" + txtPassword.getText() + "'";
+        ResultSet result = statement.executeQuery(searcherSql);
         //login successful
         if (result.next()) {
           Navigator.dashboard(event);               //go to dashboard scene
@@ -77,16 +76,15 @@ public class LogInController extends Credentials {
       }
 
       //hotel owner login
-    } else if (selectedRadioButton == ownerBtn) {
+    } else if (selectedAccountTypeBtn == ownerBtn) {
       //check if login info is correct
       try {
         Class.forName(LogInController.getDriver());
         Connection loginConnection = DriverManager.getConnection(LogInController.getUrl());
-        String ownerSQL = "SELECT USERNAME, PASSWORD FROM SOS.OWNER WHERE USERNAME='"
-                + txtUsername.getText() + "'" + " AND PASSWORD='" + txtPassword.getText() + "'";
+        String ownerSql = "SELECT USERNAME, PASSWORD FROM SOS.OWNER WHERE USERNAME='"
+            + txtUsername.getText() + "'" + " AND PASSWORD='" + txtPassword.getText() + "'";
         Statement statement = loginConnection.createStatement();
-        ResultSet result = statement.executeQuery(ownerSQL);
-
+        ResultSet result = statement.executeQuery(ownerSql);
         //login successful
         if (result.next()) {
           Navigator.hotelOwner(event);
@@ -110,7 +108,7 @@ public class LogInController extends Credentials {
   }
 
   /**
-   * Desc: takes user to register screen
+   * Desc: takes user to register screen.
    *
    * @param: event - the event handler for the button
    * @throws: Exception

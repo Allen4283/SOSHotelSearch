@@ -1,7 +1,7 @@
 package application;
 
 /**
- * Desc: allows the user to write reviews and give a rating to a hotel
+ * Desc: allows the user to write reviews and give a rating to a hotel.
  */
 public class Review {
 
@@ -11,7 +11,7 @@ public class Review {
 
 
   /**
-   * Desc: sets the user, text, and rating for the review
+   * Desc: sets the user, text, and rating for the review.
    *
    * @param: username - the username of the user making the review
    * @param: review - the text of the review
@@ -24,7 +24,7 @@ public class Review {
   }
 
   /**
-   * Desc: gets the username of the user
+   * Desc: gets the username of the user.
    *
    * @return: username - the username of the user's account
    */
@@ -33,7 +33,7 @@ public class Review {
   }
 
   /**
-   * Desc: gets the text written for the review
+   * Desc: gets the text written for the review.
    *
    * @return: review - the text the user writes for the review
    */
@@ -42,7 +42,7 @@ public class Review {
   }
 
   /**
-   * Desc: gets the rating for the review
+   * Desc: gets the rating for the review.
    *
    * @return: review - the rating the user gives to the hotel
    */

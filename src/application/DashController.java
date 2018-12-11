@@ -1,5 +1,9 @@
 package application;
 
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,18 +13,15 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
 
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 /**
  * Desc: allows user to start a search by entering location,
- * check-in date, check-out date, and number of rooms
+ * check-in date, check-out date, and number of rooms.
  */
 public class DashController implements Initializable {
   @FXML
   private TextField searchBar;        //searchbar where location is to be entered
+
   private static String location;     //location
 
   @FXML
@@ -46,16 +47,16 @@ public class DashController implements Initializable {
   //Side Panel buttons
 
   /**
-   * Desc: goes to my account scene
+   * Desc: goes to my account scene.
    *
    * @param: event - the ActionEvent from the button
    */
-  public void MyAccount(ActionEvent event) throws Exception {
+  public void myAccount(ActionEvent event) throws Exception {
     Navigator.myAccount(event);
   }
 
   /**
-   * Desc: goes to login scene
+   * Desc: goes to login scene.
    *
    * @param: event - the ActionEvent from the button
    */
@@ -71,7 +72,7 @@ public class DashController implements Initializable {
    * @param: event - the ActionEvent from the button
    */
   public void search(ActionEvent event) throws Exception {
-    location = searchBar.getText();
+    setLocation(searchBar.getText());
 
     //checks if a location was not entered
     if (location.isEmpty()) {
@@ -82,8 +83,8 @@ public class DashController implements Initializable {
       searchStatus.setText("Please select check-in and check-out dates.");
 
       //checks if check-out date is later than check-in date
-    } else if (checkInDate.getValue().compareTo(checkOutDate.getValue()) > 0 ||
-            checkInDate.getValue().isBefore(LocalDate.now())) {
+    } else if (checkInDate.getValue().compareTo(checkOutDate.getValue()) > 0
+        || checkInDate.getValue().isBefore(LocalDate.now())) {
       searchStatus.setText("Please select valid check-in and check-out dates.");
       //all information was entered, goes to map scene
     } else {
@@ -132,7 +133,7 @@ public class DashController implements Initializable {
   }
 
   /**
-   * Desc: gets the location from the dashboard searchbar
+   * Desc: gets the location from the dashboard searchbar.
    *
    * @return: location - location the user entered in the searchbar
    */
@@ -141,7 +142,14 @@ public class DashController implements Initializable {
   }
 
   /**
-   * Desc: gets the check-in date the user picked from the calendar
+   * Desc: sets the location for from the user search.
+   */
+  public static void setLocation(String location) {
+    DashController.location = location;
+  }
+
+  /**
+   * Desc: gets the check-in date the user picked from the calendar.
    *
    * @return: userCheckInDate - the date the user chose to check-in to the hotel
    */
@@ -150,7 +158,7 @@ public class DashController implements Initializable {
   }
 
   /**
-   * Desc: gets the check-out date the user picked from the calendar
+   * Desc: gets the check-out date the user picked from the calendar.
    *
    * @return: userCheckOutDate - the date the user chose to check-out from the hotel
    */
@@ -159,7 +167,7 @@ public class DashController implements Initializable {
   }
 
   /**
-   * Desc: gets the number of rooms the user chose from the dashboard
+   * Desc: gets the number of rooms the user chose from the dashboard.
    *
    * @return: numOfRooms - the number of rooms the user selected
    */
@@ -168,14 +176,14 @@ public class DashController implements Initializable {
   }
 
   /**
-   * Desc: sets the number of rooms
+   * Desc: sets the number of rooms.
    */
   public void modifyRoom() {
     this.roomCount.setValueFactory(roomCountFactory);
   }
 
   /**
-   * Desc: loads the current room count set by the user
+   * Desc: loads the current room count set by the user.
    *
    * @param: location
    * @param: resources

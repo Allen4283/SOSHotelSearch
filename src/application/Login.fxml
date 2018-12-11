@@ -24,7 +24,7 @@
    <Label layoutX="331.0" layoutY="115.0" text="Username" textFill="#323232" />
    <Label layoutX="331.0" layoutY="194.0" text="Password" />
    <PasswordField fx:id="txtPassword" layoutX="332.0" layoutY="217.0" prefHeight="27.0" prefWidth="169.0" promptText=" Password" style="-fx-background-color: #ffffff; -fx-border-color: #dddddd;" />
-   <Button id="loginButton" defaultButton="true" layoutX="335.0" layoutY="340.0" mnemonicParsing="false" onAction="#Login" prefHeight="17.0" prefWidth="169.0" stylesheets="@style.css" text="Continue" textFill="WHITE">
+   <Button id="loginButton" defaultButton="true" layoutX="335.0" layoutY="340.0" mnemonicParsing="false" onAction="#login" prefHeight="17.0" prefWidth="169.0" stylesheets="@style.css" text="Continue" textFill="WHITE">
       <font>
          <Font size="15.0" />
       </font>
@@ -60,7 +60,7 @@
    </Button>
    <RadioButton fx:id="searcherBtn" layoutX="317.0" layoutY="290.0" mnemonicParsing="false" selected="true" text="Hotel Searcher">
       <toggleGroup>
-         <ToggleGroup fx:id="loginType" />
+         <ToggleGroup fx:id="loginAccountType" />
       </toggleGroup></RadioButton>
-   <RadioButton fx:id="ownerBtn" layoutX="429.0" layoutY="290.0" mnemonicParsing="false" text="Hotel Owner" toggleGroup="$loginType" />
+   <RadioButton fx:id="ownerBtn" layoutX="429.0" layoutY="290.0" mnemonicParsing="false" text="Hotel Owner" toggleGroup="$loginAccountType" />
 </AnchorPane>

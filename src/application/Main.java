@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
   /**
-   * Desc: intializes the JavaFX GUI and sets scene to Login
+   * Desc: intializes the JavaFX GUI and sets scene to Login.
    *
    * @param: primaryStage - the stage for the GUI
    * @throws: Exception
@@ -29,7 +29,7 @@ public class Main extends Application {
   }
 
   /**
-   * Desc: launches the program
+   * Desc: launches the program.
    *
    * @param: args - array of Strings
    */

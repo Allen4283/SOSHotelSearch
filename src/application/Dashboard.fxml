@@ -130,7 +130,7 @@
             <Cursor fx:constant="HAND" />
           </cursor>
         </Button>
-        <Button alignment="CENTER" layoutX="5.0" layoutY="100.0" mnemonicParsing="false" onAction="#MyAccount" prefHeight="28.0" prefWidth="100.0" stylesheets="@style.css" text="Account" textFill="WHITE" AnchorPane.leftAnchor="5.0">
+        <Button alignment="CENTER" layoutX="5.0" layoutY="100.0" mnemonicParsing="false" onAction="#myAccount" prefHeight="28.0" prefWidth="100.0" stylesheets="@style.css" text="Account" textFill="WHITE" AnchorPane.leftAnchor="5.0">
           <font>
             <Font size="14.0" />
           </font>

@@ -1,5 +1,9 @@
 package application;
 
+import java.net.URL;
+import java.sql.*;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,9 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Paint;
 
-import java.net.URL;
-import java.sql.*;
-import java.util.ResourceBundle;
 
 /**
  * Desc: allows the user to edit account information.
@@ -26,7 +27,7 @@ public class MyAccountController extends Credentials implements Initializable {
   @FXML
   private TextField txtEmail;
   @FXML
-  private TextField txtDOB;
+  private TextField txtDob;
 
   @FXML
   private Label updateStatus;
@@ -40,7 +41,7 @@ public class MyAccountController extends Credentials implements Initializable {
     String newName = txtFullName.getText();     //updates new name
     String newPassword = txtPassword.getText(); //updates new password
     String newEmail = txtEmail.getText();       //updates new email
-    String newBirthDate = txtDOB.getText();     //updates new date of birth
+    String newBirthDate = txtDob.getText();     //updates new date of birth
 
     //checks the validity of the full name.
     if (validFullNamePattern(txtFullName.getText())) {
@@ -48,7 +49,7 @@ public class MyAccountController extends Credentials implements Initializable {
       updateStatus.setTextFill(Paint.valueOf("red"));
 
       //checks the validity of the password.
-    } else if (validPSWDPattern(txtPassword.getText())) {
+    } else if (validPasswordPattern(txtPassword.getText())) {
       updateStatus.setText("Password must not contain special characters!");
       updateStatus.setTextFill(Paint.valueOf("red"));
 
@@ -58,7 +59,7 @@ public class MyAccountController extends Credentials implements Initializable {
       updateStatus.setTextFill(Paint.valueOf("red"));
 
       //checks the validity of the date of birth.
-    } else if (validDOBPattern(txtDOB.getText())) {
+    } else if (validDobPattern(txtDob.getText())) {
       updateStatus.setText("DOB Pattern: MM/DD/YYYY");
       updateStatus.setTextFill(Paint.valueOf("red"));
 
@@ -67,7 +68,7 @@ public class MyAccountController extends Credentials implements Initializable {
         //update username and info
         String username = txtUserName.getText();
         update(newName, newPassword, newEmail, newBirthDate, username,
-                LogInController.getUpdateSQL(), updateStatus);
+                LogInController.getUpdateSql(), updateStatus);
 
       } catch (ClassNotFoundException | SQLException e) {
         e.printStackTrace();
@@ -78,7 +79,7 @@ public class MyAccountController extends Credentials implements Initializable {
   //Side panel buttons
 
   /**
-   * Desc: goes to the dashboard scene
+   * Desc: goes to the dashboard scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
@@ -88,7 +89,7 @@ public class MyAccountController extends Credentials implements Initializable {
   }
 
   /**
-   * Desc: goes to the reservations scene
+   * Desc: goes to the reservations scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
@@ -98,7 +99,7 @@ public class MyAccountController extends Credentials implements Initializable {
   }
 
   /**
-   * Desc: goes to the login scene
+   * Desc: goes to the login scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
@@ -127,24 +128,24 @@ public class MyAccountController extends Credentials implements Initializable {
   }
 
   /**
-   * Desc: gets the fullname, email, and date of birth
+   * Desc: gets the fullname, email, and date of birth.
    *
    * @param: accTypeSQL - account type
    */
-  private void getAccountData(String accTypeSQL) {
-    Statement grabInfo = null;
+  private void getAccountData(String accTypeSql) {
+    Statement grabInfo;
     String client = getClientUsername();
     try {
       Class.forName(LogInController.getDriver());
-      String getInfoSQL = "SELECT NAME, DOB, PASSWORD, EMAIL FROM " + accTypeSQL + " WHERE USERNAME='"
-              + client + "'";
+      String getInfoSql = "SELECT NAME, DOB, PASSWORD, EMAIL FROM " + accTypeSql
+          + " WHERE USERNAME='" + client + "'";
       Connection loginConnection = DriverManager.getConnection(LogInController.getUrl());
       grabInfo = loginConnection.createStatement();
-      ResultSet result = grabInfo.executeQuery(getInfoSQL);
+      ResultSet result = grabInfo.executeQuery(getInfoSql);
       if (result.next()) {
         txtFullName.setText(result.getString(1));
         txtEmail.setText(result.getString(4));
-        txtDOB.setText(result.getString(2));
+        txtDob.setText(result.getString(2));
         loginConnection.close();
         grabInfo.close();
         result.close();

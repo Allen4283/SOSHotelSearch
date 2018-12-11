@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Desc: class containing methods to navigate around the GUI
+ * Desc: class containing methods to navigate around the GUI.
  */
 
 public class Navigator {
@@ -19,8 +19,8 @@ public class Navigator {
    * @throws: Exception
    */
   static void dashboard(ActionEvent event) throws Exception {
-    Parent Logout = FXMLLoader.load(Navigator.class.getResource("Dashboard.fxml"));
-    Scene dashboardScene = new Scene(Logout);
+    Parent logout = FXMLLoader.load(Navigator.class.getResource("Dashboard.fxml"));
+    Scene dashboardScene = new Scene(logout);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(dashboardScene);
@@ -37,8 +37,8 @@ public class Navigator {
     HotelController hotelController = new HotelController();
     HotelController.setHotel(hotel);
 
-    Parent HotelInfo = FXMLLoader.load(Navigator.class.getResource("Hotel.fxml"));
-    Scene hotelInfoScene = new Scene(HotelInfo);
+    Parent hotelInfo = FXMLLoader.load(Navigator.class.getResource("Hotel.fxml"));
+    Scene hotelInfoScene = new Scene(hotelInfo);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(hotelInfoScene);
@@ -48,8 +48,8 @@ public class Navigator {
   static void hotelInfo(ActionEvent event) throws Exception {
     HotelController hotelController = new HotelController();
 
-    Parent HotelInfo = FXMLLoader.load(Navigator.class.getResource("Hotel.fxml"));
-    Scene hotelInfoScene = new Scene(HotelInfo);
+    Parent hotelInfo = FXMLLoader.load(Navigator.class.getResource("Hotel.fxml"));
+    Scene hotelInfoScene = new Scene(hotelInfo);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(hotelInfoScene);
@@ -63,8 +63,8 @@ public class Navigator {
    * @throws: Exception
    */
   static void logout(ActionEvent event) throws Exception {
-    Parent Logout = FXMLLoader.load(Navigator.class.getResource("Login.fxml"));
-    Scene logoutScene = new Scene(Logout);
+    Parent logout = FXMLLoader.load(Navigator.class.getResource("Login.fxml"));
+    Scene logoutScene = new Scene(logout);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(logoutScene);
@@ -78,8 +78,8 @@ public class Navigator {
    * @throws: Exception
    */
   static void myAccount(ActionEvent event) throws Exception {
-    Parent Logout = FXMLLoader.load(Navigator.class.getResource("MyAccount.fxml"));
-    Scene myAccountScene = new Scene(Logout);
+    Parent logout = FXMLLoader.load(Navigator.class.getResource("MyAccount.fxml"));
+    Scene myAccountScene = new Scene(logout);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(myAccountScene);
@@ -123,11 +123,11 @@ public class Navigator {
    * @throws: Exception
    */
   static void reviews(ActionEvent event) throws Exception {
-    Parent Reviews = FXMLLoader.load(Navigator.class.getResource("Reviews.fxml"));
-    Scene reviews = new Scene(Reviews);
+    Parent reviews = FXMLLoader.load(Navigator.class.getResource("Reviews.fxml"));
+    Scene reviewScene = new Scene(reviews);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    window.setScene(reviews);
+    window.setScene(reviewScene);
     window.show();
   }
 
@@ -138,8 +138,8 @@ public class Navigator {
    * @throws: Exception
    */
   static void search(ActionEvent event) throws Exception {
-    Parent Search = FXMLLoader.load(Navigator.class.getResource("Search.fxml"));
-    Scene searchScene = new Scene(Search);
+    Parent search = FXMLLoader.load(Navigator.class.getResource("Search.fxml"));
+    Scene searchScene = new Scene(search);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(searchScene);
@@ -153,8 +153,8 @@ public class Navigator {
    * @throws: Exception
    */
   static void reservation(ActionEvent event) throws Exception {
-    Parent Reservations = FXMLLoader.load(Navigator.class.getResource("Reservations.fxml"));
-    Scene reservation = new Scene(Reservations);
+    Parent reservations = FXMLLoader.load(Navigator.class.getResource("Reservations.fxml"));
+    Scene reservation = new Scene(reservations);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(reservation);
@@ -169,8 +169,8 @@ public class Navigator {
    */
   static void thankYouScene(ActionEvent event) throws Exception {
 
-    Parent FinalScene = FXMLLoader.load(Navigator.class.getResource("FinalScene.fxml"));
-    Scene finalScene = new Scene(FinalScene);
+    Parent finalScenes = FXMLLoader.load(Navigator.class.getResource("FinalScene.fxml"));
+    Scene finalScene = new Scene(finalScenes);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(finalScene);
@@ -186,8 +186,8 @@ public class Navigator {
    */
   static void hotelOwner(ActionEvent event) throws Exception {
 
-    Parent HotelOwner = FXMLLoader.load(Navigator.class.getResource("HotelOwner.fxml"));
-    Scene hotelOwner = new Scene(HotelOwner);
+    Parent hotelOwners = FXMLLoader.load(Navigator.class.getResource("HotelOwner.fxml"));
+    Scene hotelOwner = new Scene(hotelOwners);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(hotelOwner);

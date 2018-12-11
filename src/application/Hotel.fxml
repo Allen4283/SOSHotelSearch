@@ -85,7 +85,7 @@
             <Cursor fx:constant="HAND" />
           </cursor>
         </Button>
-        <Button layoutX="712.0" layoutY="438.0" mnemonicParsing="false" onAction="#GoToReviews" stylesheets="@style.css" text="View Reviews" textFill="WHITE">
+        <Button layoutX="712.0" layoutY="438.0" mnemonicParsing="false" onAction="#goToReviews" stylesheets="@style.css" text="View Reviews" textFill="WHITE">
           <cursor>
             <Cursor fx:constant="HAND" />
           </cursor>
@@ -100,12 +100,12 @@
                 <Image url="@hotelpics/holiday-inn-the-colony-4629618286-16x5.jpg" />
               </image>
             </ImageView>
-            <Button layoutX="-1.0" layoutY="340.0" mnemonicParsing="false" onAction="#PreviousImage" opacity="0.5" stylesheets="@style.css" text="&lt;" textFill="WHITE">
+            <Button layoutX="-1.0" layoutY="340.0" mnemonicParsing="false" onAction="#previousImage" opacity="0.5" stylesheets="@style.css" text="&lt;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-            <Button layoutX="462.0" layoutY="340.0" mnemonicParsing="false" onAction="#NextImage" opacity="0.5" stylesheets="@style.css" text="&gt;" textFill="WHITE">
+            <Button layoutX="462.0" layoutY="340.0" mnemonicParsing="false" onAction="#nextImage" opacity="0.5" stylesheets="@style.css" text="&gt;" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

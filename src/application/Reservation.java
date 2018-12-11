@@ -1,10 +1,10 @@
 package application;
 
-
 import java.time.LocalDate;
 
+
 /**
- * Desc: allows the user to make a reservation
+ * Desc: allows the user to make a reservation.
  */
 public class Reservation {
   private Hotel hotel;
@@ -16,7 +16,7 @@ public class Reservation {
 
   /**
    * Desc: sets the hotel, check-in date, check-out date, and number of rooms
-   * for the current reservation, and calculates the final cost
+   * for the current reservation, and calculates the final cost.
    *
    * @param: hotel - the hotel selected by the user
    * @param: checkInDate - the check-in date chosen by the user
@@ -31,8 +31,10 @@ public class Reservation {
     this.checkOutDate = checkOutDate;
     this.numberOfRooms = numberOfRooms;
     this.numberOfNights = Math.abs(checkInDate.compareTo(checkOutDate));
-    this.finalCost = hotel.getPrice() * numberOfRooms * numberOfNights; /*calculates final cost by multiplying
-                                                                            the hotel price, # of rooms, and # of nights*/
+    /*calculates final cost by multiplying
+     the hotel price, # of rooms, and # of nights*/
+    this.finalCost = hotel.getPrice() * numberOfRooms * numberOfNights;
+
   }
 
   /**
@@ -121,8 +123,7 @@ public class Reservation {
   /**
    * Desc: gets the number of nights.
    *
-   * @return: numberOfNights - the difference between the check-in date
-   * and check-out date
+   * @return: numberOfNights - the difference between the check-in date and check-out date.
    */
   public int getNumberOfNights() {
     return this.numberOfNights;
@@ -131,8 +132,7 @@ public class Reservation {
   /**
    * Desc: gets the final cost.
    *
-   * @return: finalCost - the total cost based on the price, number of rooms
-   * and number of nights
+   * @return: finalCost - the total cost based on the price, number of rooms and number of nights
    */
   public int getFinalCost() {
     return finalCost;
@@ -145,13 +145,13 @@ public class Reservation {
    */
   @Override
   public String toString() {
-    return "Reservation{" +
-            "hotel=" + hotel +
-            ", checkInDate=" + checkInDate +
-            ", checkOutDate=" + checkOutDate +
-            ", numberOfRooms=" + numberOfRooms +
-            ", numberOfNights=" + numberOfNights +
-            ", finalCost=" + finalCost +
-            '}';
+    return "Reservation{"
+        + "hotel=" + hotel
+        + ", checkInDate=" + checkInDate
+        + ", checkOutDate=" + checkOutDate
+        + ", numberOfRooms=" + numberOfRooms
+        + ", numberOfNights=" + numberOfNights
+        + ", finalCost=" + finalCost
+        + '}';
   }
 }

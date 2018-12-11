@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
- * Desc: controller class for the reservations scene
+ * Desc: controller class for the reservations scene.
  */
 
 public class ReservationsController implements Initializable {
@@ -28,23 +28,23 @@ public class ReservationsController implements Initializable {
   private ObservableList<Data> list = FXCollections.observableArrayList();
   static String url = "jdbc:derby:lib/SOSHotelAccountDB";
   private int userId;
-  private String GET_ID = "SELECT SOS.SEARCHER.USER_ID FROM SOS.SEARCHER WHERE SOS.SEARCHER.USERNAME='" +
-          LogInController.getClientUsername() + "'";
+  private String getId = "SELECT SOS.SEARCHER.USER_ID FROM SOS.SEARCHER WHERE "
+      + "SOS.SEARCHER.USERNAME='" + LogInController.getClientUsername() + "'";
 
   @FXML
   private TableView<Data> tableView;
   @FXML
-  private TableColumn<Data, String> HotelNameCol;
+  private TableColumn<Data, String> hotelNameCol;
   @FXML
-  private TableColumn<Data, String> CheckInCol;
+  private TableColumn<Data, String> checkInCol;
   @FXML
-  private TableColumn<Data, String> CheckOutCol;
+  private TableColumn<Data, String> checkOutCol;
   @FXML
   private Label status;
 
 
   /**
-   * Desc: intializes the scene by setting up columns and adding data
+   * Desc: initializes the scene by setting up columns and adding data.
    *
    * @param resources - a ResourceBundle object
    * @param: location - location of the database
@@ -56,92 +56,92 @@ public class ReservationsController implements Initializable {
   }
 
   /**
-   * Desc: static inner class defining the data
+   * Desc: static inner class defining the data.
    */
   public static class Data {
-    private final SimpleStringProperty HotelName;
-    private final SimpleStringProperty CheckIn;
-    private final SimpleStringProperty CheckOut;
+    private final SimpleStringProperty hotelName;
+    private final SimpleStringProperty checkIn;
+    private final SimpleStringProperty checkOut;
 
     /**
-     * Desc: Data constructor
+     * Desc: Data constructor.
      *
      * @param: name - the name of the hotel
      * @param: checkIn - the check in date
      * @param: checkout - the check out date
      */
     Data(String name, String checkIn, String checkOut) {
-      this.HotelName = new SimpleStringProperty(name);
-      this.CheckIn = new SimpleStringProperty(checkIn);
-      this.CheckOut = new SimpleStringProperty(checkOut);
+      this.hotelName = new SimpleStringProperty(name);
+      this.checkIn = new SimpleStringProperty(checkIn);
+      this.checkOut = new SimpleStringProperty(checkOut);
     }
 
     /**
-     * Desc: returns the hotel name
+     * Desc: returns the hotel name.
      *
-     * @return HotelName - the hotel name
+     * @return hotelName - the hotel name
      */
     public String getHotelName() {
-      return HotelName.get();
+      return hotelName.get();
     }
 
     /**
-     * Desc: returns the check in date
+     * Desc: returns the check in date.
      *
-     * @return CheckIn - the check in date
+     * @return checkIn - the check in date
      */
     public String getCheckIn() {
-      return CheckIn.get();
+      return checkIn.get();
     }
 
     /**
-     * Desc: returns the check out date
+     * Desc: returns the check out date.
      *
-     * @return CheckOut - the check out date
+     * @return checkOut - the check out date
      */
     public String getCheckOut() {
-      return CheckOut.get();
+      return checkOut.get();
     }
   }
 
   /**
-   * Desc: initializes column data in the table
+   * Desc: initializes column data in the table.
    */
   private void initCol() {
-    HotelNameCol.setCellValueFactory(new PropertyValueFactory<>("HotelName"));
-    CheckInCol.setCellValueFactory(new PropertyValueFactory<>("CheckIn"));
-    CheckOutCol.setCellValueFactory(new PropertyValueFactory<>("CheckOut"));
+    hotelNameCol.setCellValueFactory(new PropertyValueFactory<>("hotelName"));
+    checkInCol.setCellValueFactory(new PropertyValueFactory<>("checkIn"));
+    checkOutCol.setCellValueFactory(new PropertyValueFactory<>("checkOut"));
   }
 
   /**
-   * Desc: gets data from the database to add to the table
+   * Desc: gets data from the database to add to the table.
    */
   private void addData() {
     try (Connection conn = DriverManager.getConnection(Credentials.getUrl());
          Statement stmt = conn.createStatement();
-         ResultSet resultSet = stmt.executeQuery(GET_ID)) {
+         ResultSet resultSet = stmt.executeQuery(getId)) {
       resultSet.next();
       this.userId = resultSet.getInt(1);
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    final String JOIN_Hotels = "SELECT SOS.HOTEL.NAME, SOS.RESERVATIONS.CHECKIN, "
+    final String joinHotels = "SELECT SOS.HOTEL.NAME, SOS.RESERVATIONS.CHECKIN, "
             + "SOS.RESERVATIONS.CHECKOUT"
             + " FROM SOS.RESERVATIONS INNER JOIN "
-            + "SOS.HOTEL ON SOS.RESERVATIONS.HOTEL_ID=SOS.HOTEL.ID " +
-            "WHERE SOS.RESERVATIONS.USER_ID=" + userId;
+            + "SOS.HOTEL ON SOS.RESERVATIONS.HOTEL_ID=SOS.HOTEL.ID "
+            + "WHERE SOS.RESERVATIONS.USER_ID=" + userId;
 
     try (Connection connection = DriverManager.getConnection(url);
          Statement statement = connection.createStatement();
-         ResultSet resultSet = statement.executeQuery(JOIN_Hotels)) {
+         ResultSet resultSet = statement.executeQuery(joinHotels)) {
 
       // Values from Resultset object are added into list
       while (resultSet.next()) {
-        String HotelName = resultSet.getString("name");
-        String CheckIn = resultSet.getString("checkin");
-        String CheckOut = resultSet.getString("checkout");
+        String hotelName = resultSet.getString("name");
+        String checkin = resultSet.getString("checkin");
+        String checkout = resultSet.getString("checkout");
 
-        list.add(new Data(HotelName, CheckIn, CheckOut));
+        list.add(new Data(hotelName, checkin, checkout));
       }
     } catch (SQLException e) {
       status.setText("Error");
@@ -149,31 +149,33 @@ public class ReservationsController implements Initializable {
     }
     // Associates tableView with list items
     tableView.getItems().setAll(list);
-
   }
 
-  /*
-   * Desc: goes to myAccount scene
+  /**
+   * Desc: goes to myAccount scene.
+   *
    * @param: event - ActionEvent from the button
-   * @throws exception
+   * @throws Exception is thrown if review scene does not exist
    */
   public void myAccount(ActionEvent event) throws Exception {
     Navigator.myAccount(event);
   }
 
-  /*
-   * Desc: goes to dashbard scene
+  /**
+   * Desc: goes to dashbard scene.
+   *
    * @param: event - ActionEvent from the button
-   * @throws exception
+   * @throws Exception is thrown if dashboard scene does not exist.
    */
   public void dashboard(ActionEvent event) throws Exception {
     Navigator.dashboard(event);
   }
 
-  /*
-   * Desc: goes to logout scene
+  /**
+   * Desc: goes to logout scene.
+   *
    * @param: event - ActionEvent from the button
-   * @throws exception
+   * @throws Exception is thrown if logout scene does not exist.
    */
   public void logout(ActionEvent event) throws Exception {
     Navigator.logout(event);

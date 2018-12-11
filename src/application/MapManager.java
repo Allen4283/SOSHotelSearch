@@ -1,23 +1,23 @@
 package application;
 
+import com.teamdev.jxmaps.*;
+import com.teamdev.jxmaps.javafx.MapView;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import com.teamdev.jxmaps.*;
-import com.teamdev.jxmaps.javafx.MapView;
 
 /**
- * Desc: manager class for the map object
+ * Desc: manager class for the map object.
  */
 
 public class MapManager {
   // API key for Google Maps
-  protected final static String API_KEY = "AIzaSyChDY-krlOCW7QcWSoQndEoazJndJaOyyw";
-  private final static double DEGREES_TO_MILES = 69; // const approx num of miles in one degree
-  private int WAIT_TIME = 2; // const wait time for function delay in seconds
+  private static final double DEGREES_TO_MILES = 69; // const approx num of miles in one degree
+  protected  static final String API_KEY = "AIzaSyChDY-krlOCW7QcWSoQndEoazJndJaOyyw";
+  private int waitTime = 2; // const wait time for function delay in seconds
 
   private double defaultZoom; // defines the default zoom level
   private double radiusInMiles; // defines radius (in miles) to display hotels from searched for
@@ -37,7 +37,7 @@ public class MapManager {
   private ArrayList<Hotel> hotelsToDisplay = new ArrayList<>();
 
   /**
-   * Desc: Default constructor for the MapManager class
+   * Desc: Default constructor for the MapManager class.
    */
   public MapManager() {
     MapView.InitJavaFX();
@@ -55,7 +55,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the default zoom
+   * Desc: sets the default zoom.
    *
    * @param: defaultZoom - the zoom-in level when the map opens
    */
@@ -64,7 +64,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets radius in miles
+   * Desc: sets radius in miles.
    *
    * @param: radiusInMiles - the radius from the central point that hotels will dispay
    */
@@ -73,7 +73,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the path of the map marker icon
+   * Desc: sets the path of the map marker icon.
    *
    * @param: iconFilePath - the location of the icon image file path
    */
@@ -83,7 +83,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the file path for the list of hotels
+   * Desc: sets the file path for the list of hotels.
    *
    * @param: hotelFilePath - the location of the hotel text file
    */
@@ -92,7 +92,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the mapView
+   * Desc: sets the mapView.
    *
    * @param: mapView - the mapView object
    */
@@ -101,7 +101,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets mapViewOptions
+   * Desc: sets mapViewOptions.
    *
    * @param: mapViewOptions - the MapViewOptions object
    */
@@ -110,7 +110,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the icon that will display on the map
+   * Desc: sets the icon that will display on the map.
    *
    * @param: icon - the icon that will display on the map
    */
@@ -119,7 +119,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the error returned from mapView
+   * Desc: sets the error returned from mapView.
    *
    * @param: error - the error returned from mapView
    */
@@ -128,7 +128,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the error status
+   * Desc: sets the error status.
    *
    * @param: status - whether or not there is an eror
    */
@@ -137,7 +137,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: sets the address that the map will open on
+   * Desc: sets the address that the map will open on.
    *
    * @param: address - the starting address
    */
@@ -146,7 +146,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the default zoom level
+   * Desc: gets the default zoom level.
    *
    * @return: defaultZoom - the default zoom level
    */
@@ -155,7 +155,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the radius in miles
+   * Desc: gets the radius in miles.
    *
    * @return: radiusInMiles - the radius in miles that the map will display markers
    */
@@ -164,7 +164,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the radius in degrees
+   * Desc: gets the radius in degrees.
    *
    * @return: radiusInMiles - the radius in degrees that the map will display markers
    */
@@ -173,7 +173,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the icon file path
+   * Desc: gets the icon file path.
    *
    * @return: iconFilePath - the file location of the icon image
    */
@@ -182,7 +182,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the hotel text file file path
+   * Desc: gets the hotel text file file path.
    *
    * @return: radiusInMiles - the radius in miles that the map will display markers
    */
@@ -191,7 +191,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the mapView object
+   * Desc: gets the mapView object.
    *
    * @return: mapView - the mapView object
    */
@@ -200,7 +200,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the mapViewOptions object
+   * Desc: gets the mapViewOptions object.
    *
    * @return: mapViewOptions - the mapViewOptions object
    */
@@ -209,7 +209,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the address the map will show
+   * Desc: gets the address the map will show.
    *
    * @return: address - the address on the map
    */
@@ -218,7 +218,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the text of the current error
+   * Desc: gets the text of the current error.
    *
    * @return: error - the current error
    */
@@ -227,7 +227,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the current error status
+   * Desc: gets the current error status.
    *
    * @return: errorStatus - the current error status
    */
@@ -236,7 +236,7 @@ public class MapManager {
   }
 
   /**
-   * Desc: gets the list of hotels generated by the createMap function
+   * Desc: gets the list of hotels generated by the createMap function.
    *
    * @return: hotelsToDislay - array of hotel objects
    */
@@ -279,8 +279,8 @@ public class MapManager {
                       String[] h = line.split(",");
 
                       Hotel hotel = new Hotel(Integer.parseInt(h[0]), h[1],
-                              Double.parseDouble(h[2]), h[3], h[4], h[5], Double.parseDouble(h[6]),
-                              Double.parseDouble(h[7]), Integer.parseInt(h[8]));
+                          Double.parseDouble(h[2]), h[3], h[4], h[5], Double.parseDouble(h[6]),
+                          Double.parseDouble(h[7]), Integer.parseInt(h[8]));
 
                       double lat = hotel.getLat();
                       double lon = hotel.getLng();
@@ -288,13 +288,15 @@ public class MapManager {
                       // compare the difference between the coordinates of the location the user
                       // searched for and every hotel in the database. If that difference is at
                       // most 'radius' degrees, display the hotel on the map.
-                      if (Math.abs(Math.abs(lat) - Math.abs(locLatRange)) <= radiusInDegrees &&
-                              Math.abs(Math.abs(lon) - Math.abs(locLonRange)) <= radiusInDegrees) {
+                      if (Math.abs(Math.abs(lat) - Math.abs(locLatRange)) <= radiusInDegrees
+                          && Math.abs(Math.abs(lon)
+                          - Math.abs(locLonRange)) <= radiusInDegrees) {
                         Marker marker = new Marker(map);
                         marker.setIcon(icon);
                         marker.setPosition(new LatLng(lat, lon));
 
                         hotelsToDisplay.add(hotel);
+                        br.close();
                       }
                     } catch (NullPointerException e) {
                       e.printStackTrace();
@@ -311,7 +313,7 @@ public class MapManager {
                 setErrorStatus(true);
               } else if (status == GeocoderStatus.OVER_QUERY_LIMIT) {
                 setError("The web page has gone over the requests limit in too short a period "
-                        + "of time.");
+                    + "of time.");
                 setErrorStatus(true);
               } else if (status == GeocoderStatus.REQUEST_DENIED) {
                 setError("Access denied.");
@@ -332,7 +334,7 @@ public class MapManager {
       }
     });
     try {
-      TimeUnit.SECONDS.sleep(WAIT_TIME); // wait WAIT_TIME seconds to finish parsing the text file
+      TimeUnit.SECONDS.sleep(waitTime); // wait waitTime seconds to finish parsing the text file
     } catch (InterruptedException e) {
       e.printStackTrace();
     }

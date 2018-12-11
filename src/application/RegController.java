@@ -12,7 +12,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Paint;
 
 /**
- * Desc: controller for the register screen
+ * Desc: controller for the register screen.
  */
 
 public class RegController extends Credentials {
@@ -35,7 +35,7 @@ public class RegController extends Credentials {
   @FXML
   private TextField txtEmail;
   @FXML
-  private TextField txtDOB;
+  private TextField txtDob;
 
   @FXML
   private PasswordField txtPassword;
@@ -49,9 +49,9 @@ public class RegController extends Credentials {
   private ToggleGroup registerType;
 
   /**
-   * Desc: registers the user
+   * Desc: registers the user.
    *
-   * @param: event - the ActionEvent from the button
+   * @param: event - the ActionEvent from the button.
    * @throws: Exception
    */
   public void register(ActionEvent event) throws Exception {
@@ -71,7 +71,7 @@ public class RegController extends Credentials {
     String user = txtUserName.getText();
     String pass = txtPassword.getText();
     String email = txtEmail.getText();
-    String birthDate = txtDOB.getText();
+    String birthDate = txtDob.getText();
 
     //recognizes which radio button is selected (hotel searcher or hotel owner)
     RadioButton selectedRadioButton = (RadioButton) registerType.getSelectedToggle();
@@ -82,7 +82,7 @@ public class RegController extends Credentials {
       nameStatus.setTextFill(Paint.valueOf("red"));
 
       //checks if password is valid
-    } else if (validPSWDPattern(txtPassword.getText())) {
+    } else if (validPasswordPattern(txtPassword.getText())) {
       passwordStatus.setText("Password must not contain special characters!");
       passwordStatus.setTextFill(Paint.valueOf("red"));
 
@@ -97,7 +97,7 @@ public class RegController extends Credentials {
       emailStatus.setTextFill(Paint.valueOf("red"));
 
       //checks if date of birth is valid
-    } else if (validDOBPattern(txtDOB.getText())) {
+    } else if (validDobPattern(txtDob.getText())) {
       dobStatus.setText("DOB Pattern: MM/DD/YYYY");
       dobStatus.setTextFill(Paint.valueOf("red"));
 

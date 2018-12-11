@@ -1,10 +1,10 @@
 package application;
 
+import java.sql.*;
+import java.util.regex.Pattern;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 
-import java.sql.*;
-import java.util.regex.Pattern;
 
 /**
  * Desc: verifies the validity of the information the user
@@ -20,7 +20,8 @@ abstract class Credentials {
   private static final String dobREGEX = "((?:0[1-9])|(?:1[0-2]))/((?:0[0-9])|(?:[1-2][0-9])|"
           + "(?:3[0-1]))/(\\d{4})";
 
-  private static final String searcherSql = "INSERT INTO SOS.SEARCHER(USERNAME, DOB, PASSWORD, NAME, EMAIL) VALUES(?,?,?,?,?)";
+  private static final String searcherSql = "INSERT INTO SOS.SEARCHER(USERNAME, "
+      + "DOB, PASSWORD, NAME, EMAIL) VALUES(?,?,?,?,?)";
   private static final String ownerSql = "INSERT INTO SOS.OWNER VALUES(?,?,?,?,?)";
   private static final String updateSQL = "UPDATE SOS.SEARCHER SET NAME = ?, PASSWORD = ?, "
           + "EMAIL = ?, DOB = ? WHERE USERNAME = ?";
@@ -39,17 +40,17 @@ abstract class Credentials {
   private final Pattern dobPattern = Pattern.compile(dobREGEX);
 
   /**
-   * Desc: checks validity of the password
+   * Desc: checks validity of the password.
    *
    * @param: password - the password being used for the account
    * @return: true if password is invalid
    */
-  boolean validPSWDPattern(String password) {
+  boolean validPasswordPattern(String password) {
     return !passwordPattern.matcher(password).matches();
   }
 
   /**
-   * Desc: checks validity of the full name
+   * Desc: checks validity of the full name.
    *
    * @param: fullName - the full name being used for the account
    * @return: true if full name is invalid
@@ -59,7 +60,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: checks validity of the username
+   * Desc: checks validity of the username.
    *
    * @param: username - the username being for the account
    * @return: true if username is invalid
@@ -69,7 +70,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: checks validity of the email
+   * Desc: checks validity of the email.
    *
    * @param: email - the email being used for the account
    * @return: true if email is invalid
@@ -79,17 +80,17 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: checks validity of the date of birth
+   * Desc: checks validity of the date of birth.
    *
    * @param: dob - the date of birth used for the account
    * @return: true if DOB is invalid
    */
-  boolean validDOBPattern(String dob) {
+  boolean validDobPattern(String dob) {
     return !dobPattern.matcher(dob).matches();
   }
 
   /**
-   * Desc: registers an account by using the parameters for account information
+   * Desc: registers an account by using the parameters for account information.
    *
    * @param: user - username
    * @param: birthDate - date of birth
@@ -101,10 +102,10 @@ abstract class Credentials {
    * @throws: SQLException
    */
   void registerClient(String user, String birthDate, String pass, String name, String email,
-                      String typeSQL) throws ClassNotFoundException, SQLException {
+                      String typeSql) throws ClassNotFoundException, SQLException {
     Class.forName(driver);
     Connection loginConnection = DriverManager.getConnection(url);
-    PreparedStatement registerStatement = loginConnection.prepareStatement(typeSQL);
+    PreparedStatement registerStatement = loginConnection.prepareStatement(typeSql);
 
     registerStatement.setString(1, user);
     registerStatement.setString(2, birthDate);
@@ -118,7 +119,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: updates an account's information
+   * Desc: updates an account's information.
    *
    * @param: newName - updated full name
    * @param: newPassword - updated password
@@ -131,11 +132,11 @@ abstract class Credentials {
    * @throws: SQLException
    */
   void update(String newName, String newPassword, String newEmail, String newBirthDate,
-              String userName, String typeSQL, Label updateStatus)
+              String userName, String typeSql, Label updateStatus)
           throws ClassNotFoundException, SQLException {
     Class.forName(driver);
     Connection loginConnection = DriverManager.getConnection(url);
-    PreparedStatement update = loginConnection.prepareStatement(typeSQL);
+    PreparedStatement update = loginConnection.prepareStatement(typeSql);
 
     update.setString(1, newName);
     update.setString(2, newPassword);
@@ -149,7 +150,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets url to database
+   * Desc: gets url to database.
    *
    * @return: url to access database
    */
@@ -158,7 +159,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets the client's username
+   * Desc: gets the client's username.
    *
    * @return: clientUsername - the username of the client
    */
@@ -167,7 +168,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: sets the client's username
+   * Desc: sets the client's username.
    *
    * @param: thisClientUsername - the username of this client
    */
@@ -176,7 +177,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets the client's password
+   * Desc: gets the client's password.
    *
    * @return: clientPassword - the client's password
    */
@@ -185,7 +186,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: sets the client's password
+   * Desc: sets the client's password.
    *
    * @param: thisClientPassword - the password of the client
    */
@@ -194,7 +195,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets whether the user is a searcher
+   * Desc: gets whether the user is a searcher.
    *
    * @return: isSearcher - true if searcher
    */
@@ -203,7 +204,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: sets user as a searcher
+   * Desc: sets user as a searcher.
    *
    * @param: thisIsSearcher - true if searcher
    */
@@ -212,7 +213,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets driver
+   * Desc: gets driver.
    *
    * @return: driver
    */
@@ -221,16 +222,16 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets updated SQL
+   * Desc: gets updated SQL.
    *
    * @return: updateSQL - the updated SQL
    */
-  public static String getUpdateSQL() {
+  public static String getUpdateSql() {
     return updateSQL;
   }
 
   /**
-   * Desc: gets searcher SQL
+   * Desc: gets searcher SQL.
    *
    * @return: searcherSql - the hotel searcher SQL data
    */
@@ -239,7 +240,7 @@ abstract class Credentials {
   }
 
   /**
-   * Desc: gets owner SQL
+   * Desc: gets owner SQL.
    *
    * @return: ownerSql - the hotel owner SQL data
    */

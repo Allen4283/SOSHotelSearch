@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 /**
- * Desc: allows the user to pay and finalize their reservation
+ * Desc: allows the user to pay and finalize their reservation.
  */
 public class PayController {
   @FXML
@@ -25,7 +25,7 @@ public class PayController {
   }
 
   /**
-   * Desc: goes to the payment scene
+   * Desc: goes to the payment scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
@@ -35,7 +35,7 @@ public class PayController {
   }
 
   /**
-   * Desc: goes to the hotel info scene
+   * Desc: goes to the hotel info scene.
    *
    * @param: event - the ActionEvent for the button
    * @throws: Exception
